@@ -8,10 +8,26 @@ import numpy as np
 # core components of a npp
 ###############################################################################
 
+
 class neutron:
-    def __init__(pos):
+    def __init__(self, pos, is_thermal = True):
         self.pos = pos
-        
+        self.is_thermal = is_thermal
+
+    def __repr__(self):
+        desc = 'The current position of the Neutron is {pos}. \n'.format(pos = self.pos)
+        if self.is_thermal == True:
+            desc += 'It can currently be specified as a thermal neutron. '
+            desc += 'It therefore can be reliably used for fission absorbtion.'
+        else:
+            desc += 'It can currently be specified as a fast neutron. '
+            desc += 'It is therefore unlikely to be useable for fission absorbtion.'
+        return desc
+
+    def change_speed(self):
+        if is_thermal == False:
+            self.is_thermal = True
+            
 
 class fissile_material:
     def __init__(self, name, range_rod_enrichment):
@@ -20,7 +36,7 @@ class fissile_material:
         
     def __repr__(self):
         desc = 'This fissile material is called {name}. \n'.format(name = self.name)
-        desc = desc + 'It has a typical enrichment from {range_rod_enrichment[0]} to {range_rod_enrichment[1]}'.format(range_rod_enrichment = self. range_rod_enrichment)
+        desc += 'It has a typical enrichment from {range_rod_enrichment[0]} to {range_rod_enrichment[1]}'.format(range_rod_enrichment = self. range_rod_enrichment)
         return desc
 
     # def induce_fission():
@@ -55,5 +71,5 @@ class fuel_rod:
 
     def __repr__(self):
         desc = 'The material used in this rod is {name}. \n'.format(name = self.material)
-        desc = desc + 'The enrichment in this rod is {enrichment}'.format(enrichment = self.enrichment)
+        desc += 'The enrichment in this rod is {enrichment}'.format(enrichment = self.enrichment)
         return (desc)

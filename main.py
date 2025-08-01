@@ -32,4 +32,5 @@ fuel_rod01 = cmp.fuel_rod(material = fissile_material)
 
 print(fuel_rod01)
 
-#neut1 = cmp.neutron()
+neutron01 = cmp.neutron(np.array([0, 0, 0]))
+print(neutron01)

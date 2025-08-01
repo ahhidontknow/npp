@@ -28,8 +28,8 @@ import materials as mat
 
 fissile_material = mat.u_235
 
-rod1 = cmp.fuel_rod(fissile_material)
+fuel_rod01 = cmp.fuel_rod(material = fissile_material)
 
-print(rod1)
+print(fuel_rod01)
 
 #neut1 = cmp.neutron()

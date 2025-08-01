@@ -43,10 +43,17 @@ class moderator:
 
 
 class fuel_rod:
-    def __init__(self, material, enrichtment = True):
+    def __init__(self, material, size = np.array([]), material_enrichment = True):
         self.material = material.name
-        self.enrichment = enrichtment
+        # check if custom range is provided, if so use it
+        if isinstance(material_enrichment, np.ndarray): 
+            enrichment_range = material_enrichment
+            self.enrichment = np.random.uniform(low = enrichment_range[0], high = enrichment_range[1])
+        else: # else use range provided by material
+            enrichment_range = material.range_rod_enrichment
+            self.enrichment = np.random.uniform(low = enrichment_range[0], high = enrichment_range[1])
 
     def __repr__(self):
-        desc = "The material is {name}, the enrichment {enrichment}".format(name = self.material, enrichment = self.enrichment)
+        desc = 'The material used in this rod is {name}. \n'.format(name = self.material)
+        desc = desc + 'The enrichment in this rod is {enrichment}'.format(enrichment = self.enrichment)
         return (desc)
